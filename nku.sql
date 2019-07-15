@@ -134,20 +134,6 @@ INSERT INTO `join_volunteer` (`volunteer_id`, `activity_date`, `activity_num`) V
 -- 表的结构 `migration`
 --
 
-CREATE TABLE `migration` (
-  `version` varchar(180) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `apply_time` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- 转存表中的数据 `migration`
---
-
-INSERT INTO `migration` (`version`, `apply_time`) VALUES
-('m000000_000000_base', 1562685802),
-('m130524_201442_init', 1562685806);
-
--- --------------------------------------------------------
 
 --
 -- 表的结构 `nku_activity`
@@ -462,19 +448,7 @@ INSERT INTO `undertaken_byorgani` (`organi_name`, `activity_date`, `activity_num
 -- 表的结构 `user`
 --
 
-CREATE TABLE `user` (
-  `id` int(11) NOT NULL,
-  `username` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `auth_key` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
-  `password_hash` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `password_reset_token` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `status` smallint(6) NOT NULL DEFAULT '10',
-  `created_at` int(11) NOT NULL,
-  `updated_at` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- --------------------------------------------------------
 
 --
 -- 表的结构 `write_bystu`
@@ -537,8 +511,7 @@ ALTER TABLE `join_volunteer`
 --
 -- Indexes for table `migration`
 --
-ALTER TABLE `migration`
-  ADD PRIMARY KEY (`version`);
+
 
 --
 -- Indexes for table `nku_activity`
@@ -632,13 +605,7 @@ ALTER TABLE `undertaken_byorgani`
 --
 -- Indexes for table `user`
 --
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `username` (`username`),
-  ADD UNIQUE KEY `email` (`email`),
-  ADD UNIQUE KEY `password_reset_token` (`password_reset_token`);
 
---
 -- Indexes for table `write_bystu`
 --
 ALTER TABLE `write_bystu`
@@ -652,8 +619,7 @@ ALTER TABLE `write_bystu`
 --
 -- 使用表AUTO_INCREMENT `user`
 --
-ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- 限制导出的表
 --
