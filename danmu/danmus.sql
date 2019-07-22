@@ -1,0 +1,6 @@
+create table danmus( id int primary key auto_increment, words text ) 
+INSERT INTO danmus (words) VALUES ("祝nku100周年快乐！")
+INSERT INTO danmus (words) VALUES ("20191017")
+INSERT INTO danmus (words) VALUES ("允公允能日新月异！")
+INSERT INTO danmus (words) VALUES ("我要发弹幕(≧▽≦)")
+INSERT INTO danmus (words) VALUES ("预祝南开大学百年校庆圆满成功～")
