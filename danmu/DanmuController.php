@@ -43,8 +43,9 @@ class DanmuController extends Controller
         if(\Yii::$app->request->post()){
             $request = \Yii::$app->request;
             $model->words = \Yii::$app->request->post('content');
-            if($model->words!=NULL)$model->save();
-            return $this->renderPartial('fun',['danmus' => $danmus,'model'=>$model]);
+            if($model->words!=NULL)$model->save(); 
+            return $this->renderPartial('fun',['danmus' => $danmus,'model'=>$model]);   
         }
+        return $this->renderPartial('fun',['danmus' => $danmus]);
     }
 }
