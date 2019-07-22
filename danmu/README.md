@@ -1,11 +1,13 @@
 This is a message page based on bullet screen style.
 
+![](http://ww1.sinaimg.cn/large/006tNc79ly1g58yyt67rdj31qw0u0kjo.jpg)
+
 @1711447
 
-/Users/mac/.bitnami/stackman/machines/xampp/volumes/root/htdocs/advanced/frontend/views/danmu/fun.php
+htdocs/advanced/frontend/views/danmu/fun.php
 
-/Users/mac/.bitnami/stackman/machines/xampp/volumes/root/htdocs/advanced/frontend/web/danmu
+htdocs/advanced/frontend/web/danmu
 
-/Users/mac/.bitnami/stackman/machines/xampp/volumes/root/htdocs/advanced/frontend/models/Danmus.php
+htdocs/advanced/frontend/models/Danmus.php
 
-/Users/mac/.bitnami/stackman/machines/xampp/volumes/root/htdocs/advanced/frontend/controllers/DanmuController.php
+htdocs/advanced/frontend/controllers/DanmuController.php
