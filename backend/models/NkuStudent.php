@@ -2,7 +2,9 @@
 
 namespace backend\models;
 
+use backend\models\NkuAdmin;
 use Yii;
+
 
 /**
  * This is the model class for table "nku_student".
@@ -92,4 +94,6 @@ class NkuStudent extends \yii\db\ActiveRecord
     {
         return $this->hasMany(NkuNews::className(), ['news_date' => 'news_date', 'news_num' => 'news_num'])->viaTable('write_bystu', ['student_id' => 'student_id']);
     }
+
+//
 }

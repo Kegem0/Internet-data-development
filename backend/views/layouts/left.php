@@ -56,6 +56,7 @@
                      ['label' => '老师信息', 'icon' => 'male', 'url' => ['/nku-teacher'],],
                      ['label' => '志愿者信息', 'icon' => 'male', 'url' => ['/nku-volunteer'],],
                      ['label' => '组织信息', 'icon' => 'male', 'url' => ['/nku-organization'],],
+                        ['label' => '管理员审核', 'icon' => 'male', 'url' => ['/nku-student/nonadmin'],],
                      ]
                     ],
                     ['label' => '新闻管理', 'icon' => 'calendar-check-o',
@@ -63,8 +64,9 @@
                      'items' => [
                         ['label' => '新闻首页', 'icon' => 'send', 'url' => ['/nku-news'],],
                         ['label' => '活动联系', 'icon' => 'send', 'url' => ['/associate-withactivity'],],
-                         ['label' => '编辑', 'icon' => 'send', 'url' => ['/write-bystu'],],
-                        ['label' => '审核', 'icon' => 'send', 'url' => ['/audit-byadmin'],],
+                         ['label' => '编辑关系', 'icon' => 'send', 'url' => ['/write-bystu'],],
+                        ['label' => '审核关系', 'icon' => 'send', 'url' => ['/audit-byadmin'],],
+                         ['label' => '审核', 'icon' => 'send', 'url' => ['nku-news/failed'],],
                         ]
                 
                 ],

@@ -4,6 +4,7 @@ namespace backend\models;
 
 use Yii;
 
+
 /**
  * This is the model class for table "nku_admin".
  *
@@ -77,4 +78,5 @@ class NkuAdmin extends \yii\db\ActiveRecord
     {
         return static::findOne(['admin_id' => $id]);
     }
+
 }

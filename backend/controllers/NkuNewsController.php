@@ -107,19 +107,6 @@ class NkuNewsController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'news_date' => $model->news_date, 'news_num' => $model->news_num]);
         }
-
-    //     if(Yii::$app->user->can('新闻管理'))
-    //     {
-    //     return $this->render('update', [
-    //         'model' => $model,
-    //     ]);
-    //     }
-    //     else
-    // {
-    //     return $this->render('constrain_update', [
-    //         'model' => $model,
-    //     ]);
-    // }
     return $this->render('update', [
         'model' => $model,
     ]);
@@ -155,4 +142,22 @@ class NkuNewsController extends Controller
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
+     public function actionFailed()
+    {
+        $searchModel = new NkuNewsSearch();
+        $dataProvider = $searchModel->search_fail(Yii::$app->request->queryParams);
+
+        return $this->render('failed', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+
+    }
+    public function actionAudit($news_date, $news_num)
+        {
+            $audit=$this->findModel($news_date, $news_num);
+            $audit->news_ifpassed=1;
+            $audit->save();
+            return $this->redirect(['index']);
+        }
 }

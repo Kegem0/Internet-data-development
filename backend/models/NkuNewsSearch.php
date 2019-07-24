@@ -42,6 +42,7 @@ class NkuNewsSearch extends NkuNews
     {
         $query = NkuNews::find();
 
+
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
@@ -65,6 +66,37 @@ class NkuNewsSearch extends NkuNews
 
         $query->andFilterWhere(['like', 'news_headline', $this->news_headline]);
 
+        return $dataProvider;
+    }
+
+    public function search_fail($params)
+    {
+        $query = NkuNews::find();
+
+
+        // add conditions that should always apply here
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+        ]);
+
+        $this->load($params);
+
+        if (!$this->validate()) {
+            // uncomment the following line if you do not want to return any records when validation fails
+            // $query->where('0=1');
+            return $dataProvider;
+        }
+
+        // grid filtering conditions
+        $query->andFilterWhere([
+            'news_date' => $this->news_date,
+            'news_num' => $this->news_num,
+            'news_ifpassed' => $this->news_ifpassed,
+        ]);
+
+        $query->andFilterWhere(['like', 'news_headline', $this->news_headline]);
+        $query->andFilterWhere([ 'news_ifpassed'=>0]);
         return $dataProvider;
     }
 }
