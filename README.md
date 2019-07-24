@@ -40,7 +40,7 @@ Nankai university centennial anniversary database and front-end
 
   ​	后端流程图：
 
-  ![后端流程图](.\流程图\后端流程图.png)
+  ![后端流程图](http://github.com/Kegem0/Internet-data-development/raw/master/back-end-image/后端流程图.jpg)
 
   ---------------------
 
@@ -58,7 +58,7 @@ Nankai university centennial anniversary database and front-end
 
   ​					后台模块只能对管理员开放，在原生的adminlte的基础上加入id选项，用于判断该用户是否具有管理员权限。
 
-  ![登陆](.\back-end-img\登陆.jpg)
+  ![登录](http://github.com/Kegem0/Internet-data-development/raw/master/back-end-image/登录.jpg)
 
   代码更改：
 
@@ -199,15 +199,15 @@ Nankai university centennial anniversary database and front-end
 
   ##### 			Part II 主页与操作：
 
-  ​				后台的主页实现的比较简陋，主要按照admintle的框架进行更改，并加入图片轮播功能。我们将数据库中的表分为四个大部分，可以从左边的侧拉框或者上方的四个选择进入相应的模块进行操作，每个操作都应用gii自动生成。![主页](.\back-end-img\主页.jpg)
+  ​				后台的主页实现的比较简陋，主要按照admintle的框架进行更改，并加入图片轮播功能。我们将数据库中的表分为四个大部分，可以从左边的侧拉框或者上方的四个选择进入相应的模块进行操作，每个操作都应用gii自动生成。![主页](http://github.com/Kegem0/Internet-data-development/raw/master/back-end-image/主页.jpg)
 
   ​			
 
   ​				对于审核这个功能，为了让管理员进行快速的审核，我们添加了快速审核的按钮pass，点击pass即可快速将未审核的状态改为已审核。同样对于管理员审核操作，增添快速审核按钮。
 
-  ![审核_LI](.\back-end-img\审核_LI.jpg)
+  ![审核_LI](http://github.com/Kegem0/Internet-data-development/raw/master/back-end-image/审核_LI.jpg)
 
-  ![审核_管理员](.\back-end-img\管理员审核.jpg)
+  ![管理员审核](http://github.com/Kegem0/Internet-data-development/raw/master/back-end-image/管理员审核.jpg)
 
   代码更改：
 
@@ -398,6 +398,6 @@ Nankai university centennial anniversary database and front-end
 
   环境需求
 
-  ### 
+  
 
   
