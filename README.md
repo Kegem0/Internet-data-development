@@ -202,9 +202,84 @@ Nankai university centennial anniversary database and front-end
    ```
  
 
-  ##### 			Part Ⅱ 倒计时：
+##### 			Part Ⅱ 倒计时：
+  
+![](http://ww1.sinaimg.cn/large/006tNc79ly1g58z9zr969j322d0u07wk.jpg)
+
+`TimeController.php` 用于渲染视图的控制器
+
+![](http://ww3.sinaimg.cn/large/006tNc79ly1g5c445xn7aj30ms0dg403.jpg)
+
+`gettime.php` 视图页面
+
+`style.css` 设置了倒计时的样式
+
+`function.js` 可以设置目标日期的时间
+
+![](http://ww2.sinaimg.cn/large/006tNc79ly1g5bd1v2gwij30gs09ogmh.jpg)
+
+  
   ​				 
   ##### 			Part Ⅲ 弹幕发送：
+  
+  ###### 2.1 sql
+
+一个弹幕类，两个属性，自增的`id`以及弹幕内容`words`
+
+```
+--
+-- 表的结构 `danmus`
+--
+
+CREATE TABLE `danmus` (
+  `id` int(11) NOT NULL,
+  `words` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- 转存表中的数据 `danmus`
+--
+
+INSERT INTO `danmus` (`id`, `words`) VALUES
+(1, '祝nku100周年快乐！'),
+(2, '20191017'),
+(3, '允公允能日新月异！'),
+(4, '我要发弹幕(≧▽≦)'),
+(5, '预祝南开大学百年校庆圆满成功～');
+```
+
+###### 2.2 M
+
+`Danmus.php`
+
+![](http://ww3.sinaimg.cn/large/006tNc79ly1g5bd5c5mv9j30kq09w0u6.jpg)
+
+###### 2.3 V
+
+`fun.php`
+
+css样式在`danmu/danmu.css`文件中
+
+js函数直接写在了`fun.php`中
+
+弹幕显示思路是，每个弹幕格式都为`"<div style='font-size:"+ransize+"px;color:"+rancolor+";'><p>" + content + "</p></div>"`，这些div增加到`d_show`中，在显示的时候通过js函数`init_screen()`定位显示
+
+数据库中的弹幕由controller返回查询结果`danmus`，并在js函数`startRequest()`中获取
+
+![](http://ww1.sinaimg.cn/large/006tNc79ly1g58yyt67rdj31qw0u0kjo.jpg)
+
+发送弹幕并添加到数据库，提交表单，methon为post，通过action设为控制器中写的actioncreate来提交数据
+
+![](http://ww2.sinaimg.cn/large/006tNc79ly1g5c41aclasj30ra0hmjw9.jpg)
+
+###### 2.4 C
+
+`DanmuController.php`
+
+在控制器中实现弹幕数据库的查询和增加以及视图的渲染
+
+![](http://ww4.sinaimg.cn/large/006tNc79ly1g5c3x98cxaj30to0cmdip.jpg)
+
   ​				 
   ##### 			Part Ⅳ 活动显示：
   ​				    通过将数据库中的活动按月份和属性进行分类，然后在旁边的框架中通过选择并且上传值来显示不同的月份或不同类型的活动
