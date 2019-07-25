@@ -16,7 +16,12 @@ Nankai university centennial anniversary database and front-end
 
   ------------------
 
-  
+###作业下载链接
+杨俊辉：https://github.com/Kegem0/Internet-data-development/tree/master/self_homework/%E4%B8%AA%E4%BA%BA%E4%BD%9C%E4%B8%9A1711394%E6%9D%A8%E4%BF%8A%E8%BE%89
+杨铭：https://github.com/Kegem0/Internet-data-development/tree/master/self_homework/%E4%B8%AA%E4%BA%BA%E4%BD%9C%E4%B8%9A1711395%E6%9D%A8%E9%93%AD
+仪德志：https://github.com/Kegem0/Internet-data-development/tree/master/self_homework/%E4%B8%AA%E4%BA%BA%E4%BD%9C%E4%B8%9A1711399%E4%BB%AA%E5%BE%B7%E6%99%BA
+陈颖：https://github.com/Kegem0/Internet-data-development/tree/master/self_homework/%E4%B8%AA%E4%BA%BA%E4%BD%9C%E4%B8%9A1711426%E9%99%88%E9%A2%96
+诸佳昕：https://github.com/Kegem0/Internet-data-development/tree/master/self_homework/%E4%B8%AA%E4%BA%BA%E4%BD%9C%E4%B8%9A1711447%E8%AF%B8%E4%BD%B3%E6%98%95
 
 - ### 需求文档：
 
