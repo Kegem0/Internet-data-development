@@ -242,7 +242,7 @@ Nankai university centennial anniversary database and front-end
 
   ##### 			Part II 主页与操作：
 
-  ​				后台的主页实现的比较简陋，主要按照admintle的框架进行更改，并加入图片轮播功能。我们将数据库中的表分为四个大部分，可以从左边的侧拉框或者上方的四个选择进入相应的模块进行操作，每个操作都应用gii自动生成。![主页](http://github.com/Kegem0/Internet-data-development/raw/master/back-end-img/主页.jpg)
+  ​				后台的主页实现的比较简陋，主要按照admintle的框架进行更改，并加入图片轮播功能。我们将数据库中的表分为四个大部分，可以从左边的侧拉框或者上方的四个选择进入相应的模块进行操作，每个操作都应用gii自动生成。![主页]((https://github.com/Kegem0/Internet-data-development/blob/master/back-end-img/主页.jpg)
 
   ​			
 
