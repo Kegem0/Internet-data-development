@@ -83,9 +83,10 @@ Nankai university centennial anniversary database and front-end
 - ### 设计文档：
 
   数据库设计：
-  ![数据库ER图](https://github.com/Kegem0/Internet-data-development/blob/master/%E6%B5%81%E7%A8%8B%E5%9B%BE/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1%E5%9B%BE.png)
-  ![数据字典](https://github.com/Kegem0/Internet-data-development/blob/master/%E6%B5%81%E7%A8%8B%E5%9B%BE/%E6%95%B0%E6%8D%AE%E5%AD%97%E5%85%B8.pdf)
-  流程图设计：
+  ![数据库ER图](https://github.com/Kegem0/Internet-data-development/blob/master/%E6%B5%81%E7%A8%8B%E5%9B%BE/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1%E5%9B%BE.png)<br>
+  ![数据字典](https://github.com/Kegem0/Internet-data-development/blob/master/%E6%B5%81%E7%A8%8B%E5%9B%BE/%E6%95%B0%E6%8D%AE%E5%AD%97%E5%85%B8.pdf)<br>
+  
+  流程图（即前后端功能模块图）设计：
 
   ​	前端流程图：
   ![前端流程图](https://github.com/Kegem0/Internet-data-development/blob/master/%E6%B5%81%E7%A8%8B%E5%9B%BE/%E5%89%8D%E7%AB%AF%E6%B5%81%E7%A8%8B%E5%9B%BE.png)
@@ -103,12 +104,284 @@ Nankai university centennial anniversary database and front-end
 - ### 实现文档：
 
   #### 	前端主要功能与展示：
+  ##### 			Part I 注册：
+  ​				 注册时必须给定学号和学院和姓名才能注册，除了在user表中添加记录还会在nku_student表中添加记录，以实现学生和用户的连接
+   ![注册]()
+  
+  代码更改：
+  M：添加了几个属性，并且同时创建学生，以id作为连接
+  class SignupForm extends Model
+{
+    public $username;
+    public $email;
+    public $password;
+    public $id;
+    public $college;
 
+    /**
+     * {@inheritdoc}
+     */
+    public function rules()
+    {
+        return [
+            ['id', 'trim'],
+            ['id', 'required'],
+            ['id', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This id has already been taken.'],
+            ['id', 'integer', 'min' => 2, 'max' => 10000000000],
+
+            ['username', 'trim'],
+            ['username', 'required'],
+            ['username', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This username has already been taken.'],
+            ['username', 'string', 'min' => 2, 'max' => 255],
+
+            ['email', 'trim'],
+            ['email', 'required'],
+            ['email', 'email'],
+            ['email', 'string', 'max' => 255],
+            ['email', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This email address has already been taken.'],
+
+            ['password', 'required'],
+            ['password', 'string', 'min' => 6],
+
+            ['college', 'trim'],
+            ['college', 'required'],
+        ];
+    }
+    
+    C：无
+    V:添加了几个输入框，来获取新的数据
+    <div class="site-signup" style="margin-left:100px">
+    <br><br><br><br><br><br>
+    <h1><?= Html::encode($this->title) ?></h1>
+    <p>请填写下面的信息以注册</p>
+    <p>由于维护需要，目前仅支持南开大学学生注册</p>
+
+    <div class="row">
+        <div class="col-lg-5">
+            <?php $form = ActiveForm::begin(['id' => 'form-signup']); ?>
+
+               <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
+               
+               <?= $form->field($model, 'id') ?>
+       
+               <?= $form->field($model, 'college')?>
+
+               <?= $form->field($model, 'email') ?>
+
+               <?= $form->field($model, 'password')->passwordInput() ?>
+
+                <div class="form-group">
+                    <?= Html::submitButton('Signup', ['class' => 'btn btn-primary', 'name' => 'signup-button']) ?>
+                </div>
+
+            <?php ActiveForm::end(); ?>
+        </div>
+    </div>
+</div>
+
+    /**
+     * Signs user up.
+     *
+     * @return bool whether the creating new account was successful and email was sent
+     */
+    public function signup()
+    {
+        if (!$this->validate()) {
+            return null;
+        }
+        
+        $user = new User();
+        $user->username = $this->username;
+        $user->email = $this->email;
+        $user->id=$this->id;
+        $user->status=10;
+        $user->setPassword($this->password);
+        $user->generateAuthKey();
+        $user->generateEmailVerificationToken();
+        
+        $student=new NkuStudent();
+        $student->student_id=$this->id;
+        $student->student_name=$this->username;
+        $student->college_name=$this->college;
+        return $user->save() &&$student->save()&& $this->sendEmail($user);
+
+    }
+
+    /**
+     * Sends confirmation email to user
+     * @param User $user user model to with email should be send
+     * @return bool whether the email was sent
+     */
+    protected function sendEmail($user)
+    {
+        return Yii::$app
+            ->mailer
+            ->compose(
+                ['html' => 'emailVerify-html', 'text' => 'emailVerify-text'],
+                ['user' => $user]
+            )
+            ->setFrom([Yii::$app->params['supportEmail'] => Yii::$app->name . ' robot'])
+            ->setTo($this->email)
+            ->setSubject('Account registration at ' . Yii::$app->name)
+            ->send();
+    }
+}
+  ##### 			Part Ⅱ 倒计时：
+  ​				 
+  ##### 			Part Ⅲ 弹幕发送：
+  ​				 
+  ##### 			Part Ⅳ 活动显示：
+  ​				    通过将数据库中的活动按月份和属性进行分类，然后在旁边的框架中通过选择并且上传值来显示不同的月份或不同类型的活动
+  ![活动]()
+  
+  代码编写：
+  M：gii自动生成，并无修改
+  C：通过年份和月份两个选项进行时间分类或者通过type进行种类分类
+  class ActivityController extends Controller
+    {
+        public function actionIndex()
+        {
+            if(\Yii::$app->request->post()){
+                if($year=\Yii::$app->request->post('type')==null){
+                    $year=\Yii::$app->request->post('year');
+                    $month=\Yii::$app->request->post('month');
+                    return $this->render('index',['year'=>$year,'month'=>$month]);
+                }
+                else{
+                    $type=\Yii::$app->request->post('type');
+                    return $this->render('index',['year'=>0,'type'=>$type]);
+                }
+            }
+            return $this->render('index',['year'=>2019,'month'=>7]);
+        }
+    }
+  V:
+    <section class="ftco-section ftco-degree-bg">
+        <div class="subcontainer">
+            <div class="row justify-content-center mb-5 pb-3">
+                <div class="col-md-5 heading-section text-center ftco-animate">
+                    <h2 class="mb-4">校庆精彩活动
+                        <img src="images/100num.png" alt="" class="img-100 ">
+                    </h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-1 ftco-animate " class="div-inline">
+                </div>
+                <div class="col-md-6 ftco-animate " class="div-inline">
+                    <?php $AllActs = NkuActivity::find()->orderBy('activity_date')->all();$total=0;
+                    foreach($AllActs as $acts):
+                    $Allcollege = UndertakenBycollege::find()->where(['activity_date'=>$acts->activity_date,'activity_num'=>$acts->activity_num])->all();
+                    $Allorgani = UndertakenByorgani::find()->where(['activity_date'=>$acts->activity_date,'activity_num'=>$acts->activity_num])->all();
+                    if($year!=0){
+                        if(date('Y',strtotime($acts->activity_date))==$year&&date('m',strtotime($acts->activity_date))==$month){$total+=1?>
+                            <div class="item-test" style="display: block; opacity: 1;">
+                                <div class="singleline">
+                                    <a class="news-title" href=<?= Html::encode($acts->activity_url)?>>主题：<?= Html::encode($acts->activity_name)?></a>
+                                    <p> &nbsp;<i class="fa fa-fw fa-user"></i> 主办单位:<?php foreach($Allcollege as $clg):?><?= Html::encode($clg->college_name)?> <?php endforeach?><?php foreach($Allorgani as $ogn):?><?= Html::encode($ogn->organi_name)?> <?php endforeach?></p>
+                                    <p> &nbsp;<i class="fa fa-fw fa-calendar"></i> 日期：<?= Html::encode($acts->activity_date)?></p>
+                                    <p> &nbsp;<i class="fa fa-fw fa-map-marker"></i> 地点:<?= Html::encode($acts->activity_position)?></p>
+                                </div>
+                            </div>
+                    <?php }}
+                    else{ 
+                        if($acts->activity_type==$type){$total+=1?>
+                            <div class="item-test" style="display: block; opacity: 1;">
+                                <div class="singleline">
+                                    <a class="news-title" href=<?= Html::encode($acts->activity_url)?>>主题：<?= Html::encode($acts->activity_name)?></a>
+                                    <p> &nbsp;<i class="fa fa-fw fa-user"></i> 主办单位:<?php foreach($Allcollege as $clg):?><?= Html::encode($clg->college_name)?> <?php endforeach?><?php foreach($Allorgani as $ogn):?><?= Html::encode($ogn->organi_name)?> <?php endforeach?></p>
+                                    <p> &nbsp;<i class="fa fa-fw fa-calendar"></i> 日期：<?= Html::encode($acts->activity_date)?></p>
+                                    <p> &nbsp;<i class="fa fa-fw fa-map-marker"></i> 地点:<?= Html::encode($acts->activity_position)?></p>
+                                </div>
+                            </div>
+                    <?php }}endforeach?>
+                    <p1><br /></p1>
+                    <?php if($total<=3){?>
+                    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                    <?php }?>
+                </div>
+                <div class="col-md-4  sidebar ftco-animate" position:fixed float:right class="div-inline">
+                    <div class="date-move">
+                        <h3><i class="fa fa-angle-right"></i> 日期筛选</h3>
+                        <?php if($year!=0){ ?>
+                        <h4><i class="fa fa-angle-right"></i> 当前显示：<?= Html::encode($year)?>年<?= Html::encode($month)?>月</h4>
+                        <?php }else{?>
+                        <h4><i class="fa fa-angle-right"></i> 当前显示：<?= Html::encode($type)?></h4>
+                        <?php }for($tyear=2018;$tyear<2021;$tyear++){?>
+                            <?php for($tmonth=1;$tmonth<13;$tmonth++){?>
+                                <?php if(($tyear==2018&&$tmonth<10)||($tyear==2020&&$tmonth>3))continue;?>
+                                        <form action="<?= Yii::$app->urlManager->createAbsoluteUrl(['activity/index']);?>" method="post" >
+                                                <?php $form=ActiveForm::begin();?>
+                                                <input id="reply-write" name="year" type="hidden" value=<?= Html::encode($tyear)?>>
+                                                <input id="reply-write" name="month" type="hidden" value=<?= Html::encode($tmonth)?>>
+                                                <?php if($tyear==$year&&$tmonth==$month){ ?>
+                                                    <div class="date date-active">
+                                                    <button class="date-month" style="border: 0px; background:none" ><?= Html::encode($tmonth)?> <span>月</span>  </button>
+                                                    <div class="date-year"><?= Html::encode($year)?></div>
+                                                    </div>
+                                                <?php }else{ ?>
+                                                    <div class="date">
+                                                    <button class="date-month" style="border: 0px; background-color: #FFFFFF "><?= Html::encode($tmonth)?> <span>月</span>  </button>
+                                                    <div class="date-year"><?= Html::encode($year)?></div>
+                                                    </div>
+                                                <?php }?>
+                                                <?php ActiveForm::end();?>
+                                        </form>
+                                        <?php if($tyear==2019&&$tmonth==10){?>
+                                            <form id="reply-form2" action="<?= Yii::$app->urlManager->createAbsoluteUrl(['activity/index']);?>" method="post" >
+                                                    <?php $form=ActiveForm::begin();?>
+                                                    <input id="reply-write" name="year" type="hidden" value=2019>
+                                                    <input id="reply-write" name="month" type="hidden" value=10>
+                                                    <div class="date date-active date-1017">
+                                                        <button class="date-month" style="border: 0px; background:none" >百年校庆</button>
+                                                            <div class="date-year">2019.10.17</div>
+                                                    </div>
+                                                    <?php ActiveForm::end();?>
+                                            </form>
+                                        <?php }?>
+                            <?php }}?>
+                       
+
+                        <div style="clear:both;"></div>
+
+                        <h4><i class="fa fa-angle-right"></i>&nbsp</h4>
+                        <h3><i class="fa fa-angle-right"></i>活动分类</h3>
+                     
+                        
+                       
+                       <div class="row">
+                       <?php $acttype=array(1=>"宣传活动",2=>"校友活动",3=>"学术活动",4=>"纪念活动");
+                       $actco=array(1=>"green",2=>"blue",3=>"#dc3545",4=>"#ffc107");?>
+                       <?php for($typenum=1;$typenum<5;$typenum++){ ?>
+                            <form id="reply-form2" action="<?= Yii::$app->urlManager->createAbsoluteUrl(['activity/index']);?>" method="post">
+                                <?php $form=ActiveForm::begin();?>
+                                <div class="input" style="width:65%;float:left;margin-left:5%;">
+                                    <input id="reply-write" name="type" type="hidden" value=<?= Html::encode($acttype[$typenum])?>>
+                                </div>
+                                <div class="pc3">
+                                    <button style="border: 0px;background-color: #FFFFFF;color:<?= Html::encode($actco[$typenum])?>"><?= Html::encode($acttype[$typenum])?></button>
+                                </div>
+                                <?php ActiveForm::end();?>
+                            </form>
+                       <?php }?>
+                </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+  ##### 			Part Ⅵ 新闻显示及新闻上传：
+  ​			      
+  ##### 			Part Ⅶ 新闻显示及新闻上传：
+  ​			
   #### 	后端主要功能与展示：
 
   ##### 			Part I 注册与登录：
 
   ​					后台模块只能对管理员开放，在原生的adminlte的基础上加入id选项，用于判断该用户是否具有管理员权限。
+ 
 
   ![登录](https://github.com/Kegem0/Internet-data-development/blob/master/back-end-img/登陆.jpg)
 
