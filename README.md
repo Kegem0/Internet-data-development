@@ -167,11 +167,11 @@ Nankai university centennial anniversary database and front-end
         return $user->save() &&$student->save()&& $this->sendEmail($user);
 
     }
-}  
-```
+  }  
+  ```
     C：无
-    V:添加了几个输入框，来获取新的数据
-```
+    V:添加了几个输入框，来获取新的数据  
+  ```
     <div class="site-signup" style="margin-left:100px">
     <br><br><br><br><br><br>
     <h1><?= Html::encode($this->title) ?></h1>
@@ -199,7 +199,7 @@ Nankai university centennial anniversary database and front-end
             <?php ActiveForm::end(); ?>
         </div>
     </div>
- ```
+   ```
  
 
   ##### 			Part Ⅱ 倒计时：
