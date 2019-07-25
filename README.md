@@ -87,7 +87,7 @@ Nankai university centennial anniversary database and front-end
 
   数据库设计：
   ![数据库ER图](https://github.com/Kegem0/Internet-data-development/blob/master/%E6%B5%81%E7%A8%8B%E5%9B%BE/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1%E5%9B%BE.png)<br>
-  ![数据字典](https://github.com/Kegem0/Internet-data-development/blob/master/%E6%B5%81%E7%A8%8B%E5%9B%BE/%E6%95%B0%E6%8D%AE%E5%AD%97%E5%85%B8.pdf)<br>
+  ![数据字典下载地址](https://github.com/Kegem0/Internet-data-development/blob/master/%E6%B5%81%E7%A8%8B%E5%9B%BE/%E6%95%B0%E6%8D%AE%E5%AD%97%E5%85%B8.pdf)<br>
   
   流程图（即前后端功能模块图）设计：
 
@@ -109,7 +109,6 @@ Nankai university centennial anniversary database and front-end
   #### 	前端主要功能与展示：
   ##### 			Part I 注册：
   ​				 注册时必须给定学号和学院和姓名才能注册，除了在user表中添加记录还会在nku_student表中添加记录，以实现学生和用户的连接
-   ![注册]()
   
   代码更改：
   M：添加了几个属性，并且同时创建学生，以id作为连接
@@ -279,7 +278,6 @@ js函数直接写在了`fun.php`中
 ![](http://ww4.sinaimg.cn/large/006tNc79ly1g5c3x98cxaj30to0cmdip.jpg)
   ##### 			Part Ⅳ 活动显示：
   ​				    通过将数据库中的活动按月份和属性进行分类，然后在旁边的框架中通过选择并且上传值来显示不同的月份或不同类型的活动
-  ![活动]()
   
   代码编写：
   M：gii自动生成，并无修改
