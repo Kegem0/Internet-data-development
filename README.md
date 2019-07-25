@@ -40,7 +40,7 @@ Nankai university centennial anniversary database and front-end
 
   ​	后端流程图：
 
-  ![后端流程图](http://github.com/Kegem0/Internet-data-development/raw/master/back-end-img/后端流程图.jpg)
+  ![后端流程图](https://github.com/Kegem0/Internet-data-development/blob/master/%E6%B5%81%E7%A8%8B%E5%9B%BE/%E5%90%8E%E7%AB%AF%E6%B5%81%E7%A8%8B%E5%9B%BE.png)
 
   ---------------------
 
