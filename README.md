@@ -110,18 +110,15 @@ Nankai university centennial anniversary database and front-end
   
   代码更改：
   M：添加了几个属性，并且同时创建学生，以id作为连接
-   ```
+  ```
   class SignupForm extends Model
-{
+  {
     public $username;
     public $email;
     public $password;
     public $id;
     public $college;
 
-    /**
-     * {@inheritdoc}
-     */
     public function rules()
     {
         return [
@@ -147,11 +144,7 @@ Nankai university centennial anniversary database and front-end
             ['college', 'trim'],
             ['college', 'required'],
         ];
-        /**
-     * Signs user up.
-     *
-     * @return bool whether the creating new account was successful and email was sent
-     */
+       
     public function signup()
     {
         if (!$this->validate()) {
@@ -174,9 +167,8 @@ Nankai university centennial anniversary database and front-end
         return $user->save() &&$student->save()&& $this->sendEmail($user);
 
     }
-}
-    
- ```
+}  
+```
     C：无
     V:添加了几个输入框，来获取新的数据
 ```
@@ -207,7 +199,6 @@ Nankai university centennial anniversary database and front-end
             <?php ActiveForm::end(); ?>
         </div>
     </div>
-</div>
  ```
  
 
@@ -222,7 +213,7 @@ Nankai university centennial anniversary database and front-end
   代码编写：
   M：gii自动生成，并无修改
   C：通过年份和月份两个选项进行时间分类或者通过type进行种类分类
-   ```
+  ```
   class ActivityController extends Controller
     {
         public function actionIndex()
@@ -359,7 +350,7 @@ Nankai university centennial anniversary database and front-end
         </div>
 
     </section>
-    ```
+  ```
 
   ##### 			Part Ⅵ 新闻显示及新闻上传：
   ​			      
