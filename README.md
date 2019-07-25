@@ -16,43 +16,12 @@ Nankai university centennial anniversary database and front-end
 
   ------------------
 
-- ### 作业下载链接
-    杨俊辉：https://raw.githubusercontent.com/Kegem0/Internet-data-development/master/self_homework/%E4%B8%AA%E4%BA%BA%E4%BD%9C%E4%B8%9A1711394%E6%9D%A8%E4%BF%8A%E8%BE%89/%E4%BD%9C%E4%B8%9A1%EF%BC%881711394_%E6%9D%A8%E4%BF%8A%E8%BE%89%EF%BC%89.zip   (作业一)
-    
-    https://raw.githubusercontent.com/Kegem0/Internet-data-development/master/self_homework/%E4%B8%AA%E4%BA%BA%E4%BD%9C%E4%B8%9A1711394%E6%9D%A8%E4%BF%8A%E8%BE%89/%E4%BD%9C%E4%B8%9A2%EF%BC%881711394_%E6%9D%A8%E4%BF%8A%E8%BE%89%EF%BC%89.zip  （作业二）
-    
-    https://raw.githubusercontent.com/Kegem0/Internet-data-development/master/self_homework/%E4%B8%AA%E4%BA%BA%E4%BD%9C%E4%B8%9A1711394%E6%9D%A8%E4%BF%8A%E8%BE%89/%E4%BD%9C%E4%B8%9A3%EF%BC%881711394_%E6%9D%A8%E4%BF%8A%E8%BE%89%EF%BC%89.zip   （作业三）
-    
+-
+### 需求文档：
 
-    杨铭：https://raw.githubusercontent.com/Kegem0/Internet-data-development/master/self_homework/%E4%B8%AA%E4%BA%BA%E4%BD%9C%E4%B8%9A1711395%E6%9D%A8%E9%93%AD/%E6%9D%A8%E9%93%AD-1711395-%E4%BD%9C%E4%B8%9A%E4%B8%80.zip （作业一）
-    
-    https://raw.githubusercontent.com/Kegem0/Internet-data-development/master/self_homework/%E4%B8%AA%E4%BA%BA%E4%BD%9C%E4%B8%9A1711395%E6%9D%A8%E9%93%AD/%E6%9D%A8%E9%93%AD-1711395-%E4%BD%9C%E4%B8%9A%E4%BA%8C.zip （作业二）
-    
-    https://raw.githubusercontent.com/Kegem0/Internet-data-development/master/self_homework/%E4%B8%AA%E4%BA%BA%E4%BD%9C%E4%B8%9A1711395%E6%9D%A8%E9%93%AD/%E6%9D%A8%E9%93%AD-1711395-%E4%BD%9C%E4%B8%9A%E4%B8%89.zip （作业三）
-
-    仪德志：https://raw.githubusercontent.com/Kegem0/Internet-data-development/master/self_homework/%E4%B8%AA%E4%BA%BA%E4%BD%9C%E4%B8%9A1711399%E4%BB%AA%E5%BE%B7%E6%99%BA/%E4%BD%9C%E4%B8%9A1%EF%BC%881711399_%E4%BB%AA%E5%BE%B7%E6%99%BA%EF%BC%89.zip （作业一）
-    
-    https://raw.githubusercontent.com/Kegem0/Internet-data-development/master/self_homework/%E4%B8%AA%E4%BA%BA%E4%BD%9C%E4%B8%9A1711399%E4%BB%AA%E5%BE%B7%E6%99%BA/%E4%BD%9C%E4%B8%9A2%EF%BC%881711399_%E4%BB%AA%E5%BE%B7%E6%99%BA%EF%BC%89.zip （作业二）
-    
-    https://raw.githubusercontent.com/Kegem0/Internet-data-development/master/self_homework/%E4%B8%AA%E4%BA%BA%E4%BD%9C%E4%B8%9A1711399%E4%BB%AA%E5%BE%B7%E6%99%BA/%E4%BD%9C%E4%B8%9A3%EF%BC%881711399_%E4%BB%AA%E5%BE%B7%E6%99%BA%EF%BC%89.zip （作业三）
-
-    陈颖：https://raw.githubusercontent.com/Kegem0/Internet-data-development/master/self_homework/%E4%B8%AA%E4%BA%BA%E4%BD%9C%E4%B8%9A1711426%E9%99%88%E9%A2%96/%E4%BD%9C%E4%B8%9A1(1711426_%E9%99%88%E9%A2%96).zip （作业一）
-    
-    https://raw.githubusercontent.com/Kegem0/Internet-data-development/master/self_homework/%E4%B8%AA%E4%BA%BA%E4%BD%9C%E4%B8%9A1711426%E9%99%88%E9%A2%96/%E4%BD%9C%E4%B8%9A2(1711426_%E9%99%88%E9%A2%96).zip （作业二）
-    
-    https://raw.githubusercontent.com/Kegem0/Internet-data-development/master/self_homework/%E4%B8%AA%E4%BA%BA%E4%BD%9C%E4%B8%9A1711426%E9%99%88%E9%A2%96/%E4%BD%9C%E4%B8%9A3(1711426_%E9%99%88%E9%A2%96).zip （作业三）
-
-    诸佳昕：https://raw.githubusercontent.com/Kegem0/Internet-data-development/master/self_homework/%E4%B8%AA%E4%BA%BA%E4%BD%9C%E4%B8%9A1711447%E8%AF%B8%E4%BD%B3%E6%98%95/%E4%BD%9C%E4%B8%9A1(1711447_%E8%AF%B8%E4%BD%B3%E6%98%95).zip （作业一）
-    
-    https://raw.githubusercontent.com/Kegem0/Internet-data-development/master/self_homework/%E4%B8%AA%E4%BA%BA%E4%BD%9C%E4%B8%9A1711447%E8%AF%B8%E4%BD%B3%E6%98%95/%E4%BD%9C%E4%B8%9A2(1711447_%E8%AF%B8%E4%BD%B3%E6%98%95).zip （作业二）
-    
-    https://raw.githubusercontent.com/Kegem0/Internet-data-development/master/self_homework/%E4%B8%AA%E4%BA%BA%E4%BD%9C%E4%B8%9A1711447%E8%AF%B8%E4%BD%B3%E6%98%95/%E4%BD%9C%E4%B8%9A3(1711447_%E8%AF%B8%E4%BD%B3%E6%98%95).zip （作业三）
-
-- ### 需求文档：
-
-  前端功能：
+ 前端功能：
   （本部分的图过多，所以不放在说明文档中）
-  ·首页：首页主要包括以下几个部分：<br>
+#### 首页：首页主要包括以下几个部分：<br>
     首先是菜单栏，包含首页，活动，新闻，学院，嘉宾五个按钮跳转至相应子页面，还有登录和注销两个按钮供用户登录使用。<br>
     接下来可以看到南开大学津南校区图书馆作为背景图片位于工具栏下方。<br>
     然后是动态播放的南开大学美景图片，点击图片可跳转至论坛欣赏更多南开大学美图。<br>
@@ -88,23 +57,24 @@ Nankai university centennial anniversary database and front-end
     沿用首页的菜单栏和页脚。主体内容为百年校庆视频的相关链接。<br>
     12.吉祥物表情包<br>
     沿用首页的菜单栏和页脚。主体内容为校庆吉祥物表情包。<br>
-·活动页面<br>
+#### 活动页面<br>
     活动以当前月份为起点，显示了当前月份的所有活动以及对应的信息。通过右边的日历可以选择不同的月份以查看不同月份的活动。右侧还提供可选择的不同分类的活动和嘉宾的图片，点击图片跳转至我们制作的嘉宾介绍页或百度百科<br>
     活动页面的子页面:<br>
     1、一些活动的介绍<br>
-·新闻页面<br>
+#### 新闻页面<br>
     新闻页面按时间逆序显示了所有上传且被审核通过的新闻，每页10条，会根据条数的增加增加分页的功能，点击可以查看新闻内容，这个新闻的内容是通过数据库实现的，我们为登录的用户提供了上传新闻的功能，可以进行新闻的上传，但是要经过管理员审核才能通过以显示在前端的页面上<br>
     新闻页面的子页面<br>
     1、新闻模板页面（因为是从数据库中取值来填充）<br>
     在样例新闻页面中，相关人物部分，每位人物都附有链接，转至我们制作的详情页或百度百科。<br>
     2、新闻上传页面<br>
-·嘉宾页面<br>
+#### 嘉宾页面<br>
     嘉宾主页面沿用我们主页的页眉页脚，提供了一些嘉宾的图片及对应的介绍。点击图片可以进入详细介绍<br>
     嘉宾页面的子页面：<br>
     1、一些嘉宾的详细介绍页面<br>
     包含可查询到的人物主要经历和贡献。提供每位嘉宾的照片和文字资料。页面右侧有本网页目录，点击可跳转至该网页不同板块。
-    
-    
+#### 作业界面<br>
+     提供作业的下载地址
+  
   后端功能：为项目管理员提供数据操作的平台。用于对各张表进行增删改查。对于某些操作，例如审核新闻是否通过，提供快速一键审核功能。
 
   ---------------
