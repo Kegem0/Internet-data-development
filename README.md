@@ -110,6 +110,7 @@ Nankai university centennial anniversary database and front-end
   
   代码更改：
   M：添加了几个属性，并且同时创建学生，以id作为连接
+   ```
   class SignupForm extends Model
 {
     public $username;
@@ -146,10 +147,39 @@ Nankai university centennial anniversary database and front-end
             ['college', 'trim'],
             ['college', 'required'],
         ];
+        /**
+     * Signs user up.
+     *
+     * @return bool whether the creating new account was successful and email was sent
+     */
+    public function signup()
+    {
+        if (!$this->validate()) {
+            return null;
+        }
+        
+        $user = new User();
+        $user->username = $this->username;
+        $user->email = $this->email;
+        $user->id=$this->id;
+        $user->status=10;
+        $user->setPassword($this->password);
+        $user->generateAuthKey();
+        $user->generateEmailVerificationToken();
+        
+        $student=new NkuStudent();
+        $student->student_id=$this->id;
+        $student->student_name=$this->username;
+        $student->college_name=$this->college;
+        return $user->save() &&$student->save()&& $this->sendEmail($user);
+
     }
+}
     
+ ```
     C：无
     V:添加了几个输入框，来获取新的数据
+```
     <div class="site-signup" style="margin-left:100px">
     <br><br><br><br><br><br>
     <h1><?= Html::encode($this->title) ?></h1>
@@ -178,54 +208,9 @@ Nankai university centennial anniversary database and front-end
         </div>
     </div>
 </div>
+ ```
+ 
 
-    /**
-     * Signs user up.
-     *
-     * @return bool whether the creating new account was successful and email was sent
-     */
-    public function signup()
-    {
-        if (!$this->validate()) {
-            return null;
-        }
-        
-        $user = new User();
-        $user->username = $this->username;
-        $user->email = $this->email;
-        $user->id=$this->id;
-        $user->status=10;
-        $user->setPassword($this->password);
-        $user->generateAuthKey();
-        $user->generateEmailVerificationToken();
-        
-        $student=new NkuStudent();
-        $student->student_id=$this->id;
-        $student->student_name=$this->username;
-        $student->college_name=$this->college;
-        return $user->save() &&$student->save()&& $this->sendEmail($user);
-
-    }
-
-    /**
-     * Sends confirmation email to user
-     * @param User $user user model to with email should be send
-     * @return bool whether the email was sent
-     */
-    protected function sendEmail($user)
-    {
-        return Yii::$app
-            ->mailer
-            ->compose(
-                ['html' => 'emailVerify-html', 'text' => 'emailVerify-text'],
-                ['user' => $user]
-            )
-            ->setFrom([Yii::$app->params['supportEmail'] => Yii::$app->name . ' robot'])
-            ->setTo($this->email)
-            ->setSubject('Account registration at ' . Yii::$app->name)
-            ->send();
-    }
-}
   ##### 			Part Ⅱ 倒计时：
   ​				 
   ##### 			Part Ⅲ 弹幕发送：
@@ -237,6 +222,7 @@ Nankai university centennial anniversary database and front-end
   代码编写：
   M：gii自动生成，并无修改
   C：通过年份和月份两个选项进行时间分类或者通过type进行种类分类
+   ```
   class ActivityController extends Controller
     {
         public function actionIndex()
@@ -255,7 +241,9 @@ Nankai university centennial anniversary database and front-end
             return $this->render('index',['year'=>2019,'month'=>7]);
         }
     }
-  V:
+  ```
+  V:通过一些yii自带的查询语句和php语法将自己想要类型和月份的活动筛选出来
+  ```
     <section class="ftco-section ftco-degree-bg">
         <div class="subcontainer">
             <div class="row justify-content-center mb-5 pb-3">
@@ -371,6 +359,7 @@ Nankai university centennial anniversary database and front-end
         </div>
 
     </section>
+    ```
 
   ##### 			Part Ⅵ 新闻显示及新闻上传：
   ​			      
