@@ -8,7 +8,7 @@ Nankai university centennial anniversary database and front-end
 
   仪德智，杨俊辉:前端样式设计
 
-  杨铭:数据库设计，前后端交互，前端MVC的设计
+  杨铭（组长）:数据库设计，前后端交互，前端MVC的设计
 
   陈颖，诸佳昕：后端设计
 
@@ -688,8 +688,8 @@ Nankai university centennial anniversary database and front-end
   ##### 			Part Ⅶ 嘉宾展示：
   ​		        这是一个很直接的带url的页面，但是子页面使用了很多的js函数，所以我们将其作为一个分支
   代码更改：
-  M：无
-  C：无
+  M：无<br>
+  C：无<br>
   V: 直接作为页面跳转所制作的网页
   ```
     <body>
