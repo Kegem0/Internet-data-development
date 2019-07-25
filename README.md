@@ -4,7 +4,7 @@
 
 Nankai university centennial anniversary database and front-end
 
-- ### 项目分工：
+- ### 项目分工：（仅为主要任务）
 
   仪德智，杨俊辉:前端样式设计
 
@@ -21,6 +21,7 @@ Nankai university centennial anniversary database and front-end
 - ### 需求文档：
 
   前端功能：
+  （本部分的图过多，所以不放在说明文档中）
   ·首页：首页主要包括以下几个部分：<br>
     首先是菜单栏，包含首页，活动，新闻，学院，嘉宾五个按钮跳转至相应子页面，还有登录和注销两个按钮供用户登录使用。<br>
     接下来可以看到南开大学津南校区图书馆作为背景图片位于工具栏下方。<br>
@@ -693,6 +694,7 @@ Nankai university centennial anniversary database and front-end
   M：无<br>
   C：无<br>
   V: 直接作为页面跳转所制作的网页
+  嘉宾主页设计得较为简单直接，由于不需要制作大规模实际应用网页，我们只精心为三位嘉宾制作任务详情介绍页。嘉宾主页中也只有这三位嘉宾的照片。
   ```
     <body>
 
