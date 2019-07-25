@@ -21,7 +21,7 @@ Nankai university centennial anniversary database and front-end
 - ### 需求文档：
 
   前端功能：
-  ·首页：首页主要包括以下几个部分：<br>
+  ·首页：首页主要包括以下几个部分：
     首先是菜单栏，包含首页，活动，新闻，学院，嘉宾五个按钮跳转至相应子页面，还有登录和注销两个按钮供用户登录使用。
     接下来可以看到南开大学津南校区图书馆作为背景图片位于工具栏下方。
     然后是动态播放的南开大学美景图片，点击图片可跳转至论坛欣赏更多南开大学美图。
@@ -101,7 +101,7 @@ Nankai university centennial anniversary database and front-end
 
   ​					后台模块只能对管理员开放，在原生的adminlte的基础上加入id选项，用于判断该用户是否具有管理员权限。
 
-  ![登录](http://github.com/Kegem0/Internet-data-development/raw/master/back-end-img/登录.jpg)
+  ![登录]((https://github.com/Kegem0/Internet-data-development/blob/master/back-end-img/登录.jpg)
 
   代码更改：
 
@@ -248,9 +248,9 @@ Nankai university centennial anniversary database and front-end
 
   ​				对于审核这个功能，为了让管理员进行快速的审核，我们添加了快速审核的按钮pass，点击pass即可快速将未审核的状态改为已审核。同样对于管理员审核操作，增添快速审核按钮。
 
-  ![审核_LI](http://github.com/Kegem0/Internet-data-development/raw/master/back-end-img/审核_LI.jpg)
+  ![审核_LI]((https://github.com/Kegem0/Internet-data-development/blob/master/back-end-img/审核_LI.jpg)
 
-  ![管理员审核](http://github.com/Kegem0/Internet-data-development/raw/master/back-end-img/管理员审核.jpg)
+  ![管理员审核]((https://github.com/Kegem0/Internet-data-development/blob/master/back-end-img/管理员审核.jpg)
 
   代码更改：
 
