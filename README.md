@@ -11,7 +11,7 @@ Nankai university centennial anniversary database and front-end
   杨铭（组长）:数据库设计，前后端交互，前端MVC的设计
 
   陈颖，诸佳昕：后端设计
-  
+  ![我们的github](https://github.com/Kegem0/Internet-data-development)<br>
   ![git提交记录](https://github.com/Kegem0/Internet-data-development/blob/master/git%E6%8F%90%E4%BA%A4%E8%AE%B0%E5%BD%95.png)
 
   ----------------
