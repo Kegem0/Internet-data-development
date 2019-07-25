@@ -35,6 +35,12 @@
                     // ['label' => 'Debug', 'icon' => 'dashboard', 'url' => ['/debug']],
                    
                     ['label' => 'Login', 'url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],
+                      ['label' => '审核', 'icon' => 'calendar-check-o',
+                        'items' => [
+                            ['label' => '管理员审核', 'icon' => 'star-half-empty', 'url' => ['/nku-student/nonadmin'],],
+                            ['label' => '新闻审核', 'icon' => 'star-half-empty', 'url' => ['/nku-news/failed'],],
+                        ],
+                    ],
                     ['label' => '活动日程', 'icon' => 'calendar-check-o', 
                     'url' => ['/nku-activity'],
                     'items' => [
