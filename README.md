@@ -202,84 +202,9 @@ Nankai university centennial anniversary database and front-end
    ```
  
 
-##### 			Part Ⅱ 倒计时：
-  
-![](http://ww1.sinaimg.cn/large/006tNc79ly1g58z9zr969j322d0u07wk.jpg)
-
-`TimeController.php` 用于渲染视图的控制器
-
-![](http://ww3.sinaimg.cn/large/006tNc79ly1g5c445xn7aj30ms0dg403.jpg)
-
-`gettime.php` 视图页面
-
-`style.css` 设置了倒计时的样式
-
-`function.js` 可以设置目标日期的时间
-
-![](http://ww2.sinaimg.cn/large/006tNc79ly1g5bd1v2gwij30gs09ogmh.jpg)
-
-  
+  ##### 			Part Ⅱ 倒计时：
   ​				 
   ##### 			Part Ⅲ 弹幕发送：
-  
-  ###### 2.1 sql
-
-一个弹幕类，两个属性，自增的`id`以及弹幕内容`words`
-
-```
---
--- 表的结构 `danmus`
---
-
-CREATE TABLE `danmus` (
-  `id` int(11) NOT NULL,
-  `words` text DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- 转存表中的数据 `danmus`
---
-
-INSERT INTO `danmus` (`id`, `words`) VALUES
-(1, '祝nku100周年快乐！'),
-(2, '20191017'),
-(3, '允公允能日新月异！'),
-(4, '我要发弹幕(≧▽≦)'),
-(5, '预祝南开大学百年校庆圆满成功～');
-```
-
-###### 2.2 M
-
-`Danmus.php`
-
-![](http://ww3.sinaimg.cn/large/006tNc79ly1g5bd5c5mv9j30kq09w0u6.jpg)
-
-###### 2.3 V
-
-`fun.php`
-
-css样式在`danmu/danmu.css`文件中
-
-js函数直接写在了`fun.php`中
-
-弹幕显示思路是，每个弹幕格式都为`"<div style='font-size:"+ransize+"px;color:"+rancolor+";'><p>" + content + "</p></div>"`，这些div增加到`d_show`中，在显示的时候通过js函数`init_screen()`定位显示
-
-数据库中的弹幕由controller返回查询结果`danmus`，并在js函数`startRequest()`中获取
-
-![](http://ww1.sinaimg.cn/large/006tNc79ly1g58yyt67rdj31qw0u0kjo.jpg)
-
-发送弹幕并添加到数据库，提交表单，methon为post，通过action设为控制器中写的actioncreate来提交数据
-
-![](http://ww2.sinaimg.cn/large/006tNc79ly1g5c41aclasj30ra0hmjw9.jpg)
-
-###### 2.4 C
-
-`DanmuController.php`
-
-在控制器中实现弹幕数据库的查询和增加以及视图的渲染
-
-![](http://ww4.sinaimg.cn/large/006tNc79ly1g5c3x98cxaj30to0cmdip.jpg)
-
   ​				 
   ##### 			Part Ⅳ 活动显示：
   ​				    通过将数据库中的活动按月份和属性进行分类，然后在旁边的框架中通过选择并且上传值来显示不同的月份或不同类型的活动
@@ -308,7 +233,7 @@ js函数直接写在了`fun.php`中
         }
     }
   ```
-  V:通过一些yii自带的查询语句和php语法将自己想要类型和月份的活动筛选出来
+  V:通过一些yii自带的查询语句和php语法将自己想要类型和月份的活动筛选出来 css文件和js函数没有给出
   ```
     <section class="ftco-section ftco-degree-bg">
         <div class="subcontainer">
@@ -428,9 +353,426 @@ js函数直接写在了`fun.php`中
   ```
 
   ##### 			Part Ⅵ 新闻显示及新闻上传：
-  ​			      
-  ##### 			Part Ⅶ 新闻显示及新闻上传：
-  ​			
+  ​			      通过实践逆序，将新闻全部显示出来，每页显示10条，没多十条会多出现一个分支页面，当登录之后会出现一个新闻上传按钮，点击可以进行新闻上传，但是要通过后端管理员的审核才能显示在该页面。
+  M：nku_news是gii自动生成的，没有变化，编写了一个uploadnews类已完成上传新闻的功能
+  ```
+      <?php
+    namespace frontend\models;
+
+    use Yii;
+    use yii\base\Model;
+    use common\models\User;
+    use frontend\models\NkuNews;
+    use frontend\models\WriteBystu;
+    /**
+     * Signup form
+     */
+    class Uploadnews extends Model
+    {
+        public $date;
+        public $headline;
+        public $text;
+
+        public function rules()
+        {
+            return [
+                ['date', 'trim'],
+                ['date', 'required'],
+
+                ['headline', 'trim'],
+                ['headline', 'required'],
+
+                ['text', 'trim'],
+                ['text', 'required'],
+            ];
+        }
+
+        /**
+         * Signs user up.
+         *
+         * @return bool whether the creating new account was successful and email was sent
+         */
+        public function uploadnews()
+        {   
+            $news=new NkuNews();
+            $news->news_date=$this->date;
+            $news->news_headline=$this->headline;
+            $news->news_text=$this->text;
+            $news->news_ifpassed=0;
+            if($AllNews = NkuNews::find()->where(['news_date'=>$this->date])->orderby(['news_num'=> SORT_DESC])->one()){
+                $news->news_num=$AllNews->news_num+1;
+            }
+            else{
+                $news->news_num=0;
+            }
+            $AllNews = NkuNews::find()->orderby(['news_url'=> SORT_DESC])->one();
+            $news->news_url=$AllNews->news_url+1;
+            $news->save(); 
+            $writeby = new WriteBystu();
+            $writeby->news_date=$news->news_date;
+            $writeby->news_num=$news->news_num;
+            $writeby->student_id=Yii::$app->user->id;
+            return $news->save()&&$writeby->save();;
+        }
+    }
+  ```
+  C:主要实现主页面、上传页面和显示模板界面的跳转 
+  ```
+      class NewsController extends Controller
+    {
+        public function actionIndex()
+        {
+            if(\Yii::$app->request->post()){
+                $cur = Yii::$app->request->post('next');
+                return $this->render('index',['cur'=> $cur]);
+            }   
+            return $this->render('index',['cur'=>1]);   
+        }
+        public function actionUploadnews()
+        {
+            $model = new Uploadnews();
+            if ($model->load(Yii::$app->request->post())) {
+                $model->uploadnews();
+                return $this->render('uploadnews',['passed'=>1]);
+            }
+            return $this->render('uploadnews', [
+                'model' => $model,'passed'=>0
+            ]);
+        }
+        public function actionAllnews()
+        {
+            if(\Yii::$app->request->post()){
+                $model =new NkuNews;
+                $request = \Yii::$app->request;
+                $model = NkuNews::find()->where(['news_url'=>\Yii::$app->request->post('url')])->one();
+                return $this->render('allnews',['model'=> $model]);
+            }   
+        }
+    }
+  ```
+  V：包括，所有新闻的显示页面 css文件和js函数没有给出 css文件和js函数没有给出
+  ```
+  <section class="ftco-section ftco-degree-bg">
+            <!--<img style="position:absolute;left:0px;top:0px;width:100%;height:50%;z-Index:-1; border:1px solid blue" src="images/backnews1.jpg">
+            -->
+            <div class="subcontainer">
+                <div class="row justify-content-center mb-5 pb-3">
+                    <div class="col-md-5 heading-section text-center ftco-animate">
+                        <h2 class="mb-4">南开百年新闻
+                            <img src="images2/100num.png" alt="" class="img-100 ">
+                        </h2>
+                    </div>
+                <?php if(Yii::$app->user->isGuest){}else{ ?>
+                    <div class="col-md-1 ftco-animate " class="div-inline">
+                        <a href="index.php?r=news%2Fuploadnews">
+                            <div class="uploaddata">
+                                <span class="uploadword">上传新闻</span>
+                            </div>
+                        </a>
+                    </div>
+                <?php } ?>
+                    
+                </div>
+                <div class="row">
+                    <div class="col-md-2 ftco-animate " class="div-inline">
+                    </div>
+                    <div class="col-md-10 ftco-animate " class="div-inline">
+                        <?php $AllNews = NkuNews::find()->orderBy(['news_date' => SORT_DESC])->all(); ?>
+                        <?php $news_num=0;
+                        foreach($AllNews as $news):
+                        if(($news_num<($cur*10-10))&&$news->news_ifpassed==1){
+                            $news_num++;
+                            continue;
+                        }
+                        if($news->news_ifpassed==1){?>
+                        <div class="item-test" style="display: block; opacity: 1;">
+                            <div class="singleline">
+                            <form id="reply-form2" action="<?= Yii::$app->urlManager->createAbsoluteUrl(['news/allnews']);?>" method="post" style="padding-top:8px;padding-bottom:30px;">
+                                <?php $form=ActiveForm::begin();?>
+                                <div class="input" style="width:65%;float:left;margin-left:5%;">
+                                    <input id="reply-write" name="url" type="hidden" value=<?=Html::encode($news->news_url)?>>
+                                </div>
+                                <div class='send-btn'>
+                                    <button style="color:#a0468c; background-color: #FFFFFF;border: 0px none;font-size: 15px;" ><?=Html::encode($news->news_headline)?></button>
+                                </div>
+                                <?php ActiveForm::end();?>
+                            </form>
+                                    <p class="dateshowright"><i class="fa fa-fw fa-calendar"></i> 日期：<?=Html::encode($news->news_date)?><a href=""></a></p>
+                            </div>
+                        </div>
+                        <p1><br/></p1>
+                        <?php $news_num+=1;}
+                        endforeach?>
+                </div>
+
+                <div id="jz">
+                    <div class="row">
+                        <?php $total=NkuNews::find()->count();
+                        if($total<50){
+                            $pnum=1;
+                            while($pnum*10-10<$total){?>
+                            <form id="reply-form2" action="<?= Yii::$app->urlManager->createAbsoluteUrl(['news/index']);?>" method="post" style="padding-top:8px;padding-bottom:30px;">
+                                    <?php $form=ActiveForm::begin();?>
+                                    <div class="input" style="width:65%;float:left;margin-left:5%;">
+                                        <input id="reply-write" name="next" type="hidden" value=1>
+                                    </div>
+                                    <?php if($pnum!=$cur){ ?>
+                                    <button style="color:#a0468c; background-color: #FFFFFF;border: 0px none;font-size: 30px;"><?=Html::encode($pnum)?></button>
+                                    <?php }else{?>
+                                    <button style="color:#a0468c; background-color: #FFFFFF;border: 0px none;font-size: 30px; text-decoration:underline;"><?=Html::encode($pnum)?></button>
+                                    <?php } ?>
+                                    <?php ActiveForm::end();?>
+                            </form>
+                            <?php $pnum+=1;} ?>
+                        <?php } ?> 
+                        <!-- <a href="#">
+                            <div class="pc-active">
+                                <span>1</span>
+                            </div>
+                        </a>
+                        <p>&nbsp &nbsp</p>
+                        <a href="news2.html">
+                            <div class="pc">
+                                <span>2</span>
+                            </div>
+                        </a>
+                        <p>&nbsp &nbsp</p>
+                        <a href="http:\\www.baidu.com">
+                            <div class="pc">
+                                <span>3</span>
+                            </div>
+                        </a>
+                        <p>&nbsp &nbsp</p>
+                        <a href="http:\\www.baidu.com">
+                            <div class="pc">
+                                <span>4</span>
+                            </div>
+                        </a>
+                        <p>&nbsp &nbsp</p>
+                        <a href="http:\\www.baidu.com">
+                            <div class="pc">
+                                <span>5</span>
+                            </div>
+                        </a>
+                        <p>&nbsp &nbsp</p>
+                        <a href="news2.html">
+                            <div class="pc2">
+                                <span>下一页</span>
+                            </div>
+                        </a> -->
+                    </div>
+                </div>
+        </section>
+  ```
+  新闻上传页面:css文件和js函数没有给出
+  ```
+    <?php
+
+  /* @var $this yii\web\View */
+  /* @var $form yii\bootstrap\ActiveForm */
+  /* @var $model \frontend\models\ContactForm */
+
+  use yii\helpers\Html;
+  use yii\bootstrap\ActiveForm;
+  use yii\captcha\Captcha;
+
+  $this->title = 'Contact';
+  $this->params['breadcrumbs'][] = $this->title;
+  ?>
+  <div class="site-news" style="margin-left:100px">
+      <br><br><br><br><br><br>
+      <?php if($passed==1){ ?>
+      <h1>新闻上传成功！请等待审核</h1>
+      <?php }else{ 
+      if(Yii::$app->user->isGuest) {?>
+      <h3>新闻上传？你以为这么简单就能破了我的局么，虽然我不会权限控制，但是这种还是会的</h3>
+      <?php }else{ ?>
+      <h1>
+      新闻上传
+      </h1>
+      <div class="row">
+          <div class="col-lg-5">
+              <?php $form = ActiveForm::begin(['id' => 'contact-form']); ?>
+
+                  <?= $form->field($model, 'date')?>
+
+                  <?= $form->field($model, 'headline') ?>
+
+                  <?= $form->field($model, 'text')->textarea(['rows' => 6])?>
+
+                  <div class="form-group">
+                      <?= Html::submitButton('新闻上传', ['class' => 'btn btn-primary', 'name' => 'upnews-button']) ?>
+                  </div>
+
+              <?php ActiveForm::end(); ?>
+          </div>
+      </div>
+      <?php }}?>
+   </div>
+  ```
+  以及显示所有新闻的模板页面，这里通过从数据库中取数据以达到相应的功能 
+  ```
+      <?php
+    // 1711447
+    use yii\helpers\Html;
+    use yii\db\Query;
+    use frontend\models\NkuNews;
+    use frontend\models\WriteBystu; 
+    use frontend\models\NkuStudent;
+    use frontend\models\JoinGuest;   
+    use frontend\models\Guest;   
+    use yii\widgets\ActiveForm;
+    ?>
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <!DOCTYPE html>
+    <html lang="en">
+
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Abril+Fatface" rel="stylesheet">
+
+        <link rel="stylesheet" href="css2/open-iconic-bootstrap.min.css">
+        <link rel="stylesheet" href="css2/animate.css">
+
+        <link rel="stylesheet" href="css2/owl.carousel.min.css">
+        <link rel="stylesheet" href="css2/owl.theme.default.min.css">
+        <link rel="stylesheet" href="css2/magnific-popup.css">
+
+        <link rel="stylesheet" href="css2/aos.css">
+
+        <link rel="stylesheet" href="css2/ionicons.min.css">
+
+        <link rel="stylesheet" href="css2/bootstrap-datepicker.css">
+        <link rel="stylesheet" href="css2/jquery.timepicker.css">
+
+
+
+        <link rel="stylesheet" href="css2/flaticon.css">
+        <link rel="stylesheet" href="css2/icomoon.css">
+        <link rel="stylesheet" href="css2/style.css">
+        <!-- <link rel="stylesheet" href="css/styleeole.css"> -->
+    </head>
+
+    <body>
+        <?php $writeby=WriteBystu::find()->where(['news_date'=>$model->news_date,'news_num'=>$model->news_num])->one();
+        $student=NkuStudent::find()->where(['student_id'=>$writeby->student_id])->one();
+        ?>
+        <br><br><br>
+        <h3>&nbsp</h3>
+        <h1 style="text-align: center   "><?=Html::encode($model->news_headline)?></h1>
+        <h2 style="text-align:center;font-size:25px !important;color:cornflowerblue">
+            <p1>&nbsp &nbsp  &nbsp  &nbsp  &nbsp  &nbsp   &nbsp &nbsp &nbsp  
+                    &nbsp  &nbsp  &nbsp  &nbsp  &nbsp &nbsp &nbsp &nbsp &nbsp</p1>
+            作者:<?=Html::encode($student->student_name)?>
+        </h2>
+        <h3>&nbsp</h3>
+        <div class="row">
+            <div class="col-md-3">
+            </div>
+            <div class="col-md-6" style="text-align: left;font-size:20px;font:#000000;font-weight: 500!important">
+                 <?=Html::encode($model->news_text)?>
+            <h3 style="text-align: right !important; font-size:18px;">时间：<?=Html::encode($model->news_date)?><br/></h3>
+            </div>
+        </div>
+
+    </body>
+
+    </html>
+  ```
+  ##### 			Part Ⅶ 嘉宾展示：
+  ​		        这是一个很直接的带url的页面，但是子页面使用了很多的js函数，所以我们将其作为一个分支
+  代码更改：
+  M：无
+  C：无
+  V: 直接作为页面跳转所制作的网页
+  ```
+    <body>
+
+      <br><br><br>
+      <h3>&nbsp</h3>
+      <div class="introduction">
+          <span style="color:#fff">南开校庆嘉宾介绍<br/></span><br/>
+      </div>
+      <p1>&nbsp</p1>
+
+
+
+      <!-- 第一行四张照片 -->
+      <div class="row" style="text-align: center">
+          <div class="col-md-1" style="text-align: center">
+          </div>
+          <div class="col-md-2" style="text-align: center">
+          <a href="index.php?r=guest%2Fcaoxuetao" style="color:blueviolet">
+              <img src="images2/cxt3.jpg" alt="" class="img-100man"><br />
+              <h4>曹雪涛<br /></h4>
+              <p1>南开大学校长</p1>
+          </a>
+          </div>
+          <div class="col-md-2" style="text-align: center">
+          <a href="index.php?r=guest%2Fyuanxiaojie"style="color:blueviolet">
+              <img src="images2/yxj1.png" alt="" class="img-100man"><br />
+              <h4>袁晓洁<br /></h4>
+              <p1>计算机学院院长</p1>
+          </a>
+          </div>
+          <div class="col-md-2" style="text-align: center">
+                  <a href="index.php?r=guest%2Fcaoxuetao" style="color:blueviolet">
+              <img src="images2/cxt2.jpg" alt="" class="img-100man"><br />
+              <h4>曹雪涛<br /></h4>
+              <p1>南开大学校长</p1>
+          </a>
+          </div>
+          <div class="col-md-2" style="text-align: center">
+                  <a href="index.php?r=guest%2Fcaoxuetao" style="color:blueviolet">
+                  <img src="images2/yjy1.jpg" alt="" class="img-100man"><br />
+                  <h4>叶嘉莹<br /></h4>
+                  <p1>知名校友</p1>
+              </a>
+          </div>
+      </div> 
+      <p1>&nbsp</p1>
+
+          <!-- 第二行四张照片 -->
+          <div class="row" style="text-align: center">
+                  <div class="col-md-1" style="text-align: center">
+                  </div>
+                  <div class="col-md-2" style="text-align: center">
+                          <a href="blog-single.html" style="color:blueviolet">
+                      <img src="images2/cxt3.jpg" alt="" class="img-100man"><br />
+                      <h4>曹雪涛<br /></h4>
+                      <p1>南开大学校长</p1>
+                  </a>
+                  </div>
+                  <div class="col-md-2" style="text-align: center">
+                          <a href="blog-single.html" style="color:blueviolet">
+                      <img src="images2/yxj1.png" alt="" class="img-100man"><br />
+                      <h4>曹雪涛<br /></h4>
+                      <p1>南开大学校长</p1>
+                  </a>
+                  </div>
+                  <div class="col-md-2" style="text-align: center">
+                          <a href="blog-single.html" style="color:blueviolet">
+                      <img src="images2/cxt2.jpg" alt="" class="img-100man"><br />
+                      <h4>曹雪涛<br /></h4>
+                      <p1>南开大学校长</p1>
+                  </a>
+                  </div>
+                  <div class="col-md-2" style="text-align: center">
+                          <a href="blog-single.html" style="color:blueviolet">
+                          <img src="images2/yjy1.jpg" alt="" class="img-100man"><br />
+                          <h4>曹雪涛<br /></h4>
+                          <p1>南开大学校长</p1>
+                      </a>
+                  </div>
+          </div>
+  </body>
+  ```
   #### 	后端主要功能与展示：
 
   ##### 			Part I 注册与登录：
