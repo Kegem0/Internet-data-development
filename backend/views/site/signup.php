@@ -1,5 +1,5 @@
 <?php
-/*
+/*author:1711426
 <head>
   <meta charset="utf-8">
   <title>AdminLTE 2 | Registration Page</title>
