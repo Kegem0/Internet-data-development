@@ -24,13 +24,29 @@ Nankai university centennial anniversary database and front-end
     https://raw.githubusercontent.com/Kegem0/Internet-data-development/master/self_homework/%E4%B8%AA%E4%BA%BA%E4%BD%9C%E4%B8%9A1711394%E6%9D%A8%E4%BF%8A%E8%BE%89/%E4%BD%9C%E4%B8%9A3%EF%BC%881711394_%E6%9D%A8%E4%BF%8A%E8%BE%89%EF%BC%89.zip   （作业三）
     
 
-    杨铭：https://github.com/Kegem0/Internet-data-development/tree/master/self_homework/%E4%B8%AA%E4%BA%BA%E4%BD%9C%E4%B8%9A1711395%E6%9D%A8%E9%93%AD
+    杨铭：https://raw.githubusercontent.com/Kegem0/Internet-data-development/master/self_homework/%E4%B8%AA%E4%BA%BA%E4%BD%9C%E4%B8%9A1711395%E6%9D%A8%E9%93%AD/%E6%9D%A8%E9%93%AD-1711395-%E4%BD%9C%E4%B8%9A%E4%B8%80.zip （作业一）
+    
+    https://raw.githubusercontent.com/Kegem0/Internet-data-development/master/self_homework/%E4%B8%AA%E4%BA%BA%E4%BD%9C%E4%B8%9A1711395%E6%9D%A8%E9%93%AD/%E6%9D%A8%E9%93%AD-1711395-%E4%BD%9C%E4%B8%9A%E4%BA%8C.zip （作业二）
+    
+    https://raw.githubusercontent.com/Kegem0/Internet-data-development/master/self_homework/%E4%B8%AA%E4%BA%BA%E4%BD%9C%E4%B8%9A1711395%E6%9D%A8%E9%93%AD/%E6%9D%A8%E9%93%AD-1711395-%E4%BD%9C%E4%B8%9A%E4%B8%89.zip （作业三）
 
-    仪德志：https://github.com/Kegem0/Internet-data-development/tree/master/self_homework/%E4%B8%AA%E4%BA%BA%E4%BD%9C%E4%B8%9A1711399%E4%BB%AA%E5%BE%B7%E6%99%BA
+    仪德志：https://raw.githubusercontent.com/Kegem0/Internet-data-development/master/self_homework/%E4%B8%AA%E4%BA%BA%E4%BD%9C%E4%B8%9A1711399%E4%BB%AA%E5%BE%B7%E6%99%BA/%E4%BD%9C%E4%B8%9A1%EF%BC%881711399_%E4%BB%AA%E5%BE%B7%E6%99%BA%EF%BC%89.zip （作业一）
+    
+    https://raw.githubusercontent.com/Kegem0/Internet-data-development/master/self_homework/%E4%B8%AA%E4%BA%BA%E4%BD%9C%E4%B8%9A1711399%E4%BB%AA%E5%BE%B7%E6%99%BA/%E4%BD%9C%E4%B8%9A2%EF%BC%881711399_%E4%BB%AA%E5%BE%B7%E6%99%BA%EF%BC%89.zip （作业二）
+    
+    https://raw.githubusercontent.com/Kegem0/Internet-data-development/master/self_homework/%E4%B8%AA%E4%BA%BA%E4%BD%9C%E4%B8%9A1711399%E4%BB%AA%E5%BE%B7%E6%99%BA/%E4%BD%9C%E4%B8%9A3%EF%BC%881711399_%E4%BB%AA%E5%BE%B7%E6%99%BA%EF%BC%89.zip （作业三）
 
-    陈颖：https://github.com/Kegem0/Internet-data-development/tree/master/self_homework/%E4%B8%AA%E4%BA%BA%E4%BD%9C%E4%B8%9A1711426%E9%99%88%E9%A2%96
+    陈颖：https://raw.githubusercontent.com/Kegem0/Internet-data-development/master/self_homework/%E4%B8%AA%E4%BA%BA%E4%BD%9C%E4%B8%9A1711426%E9%99%88%E9%A2%96/%E4%BD%9C%E4%B8%9A1(1711426_%E9%99%88%E9%A2%96).zip （作业一）
+    
+    https://raw.githubusercontent.com/Kegem0/Internet-data-development/master/self_homework/%E4%B8%AA%E4%BA%BA%E4%BD%9C%E4%B8%9A1711426%E9%99%88%E9%A2%96/%E4%BD%9C%E4%B8%9A2(1711426_%E9%99%88%E9%A2%96).zip （作业二）
+    
+    https://raw.githubusercontent.com/Kegem0/Internet-data-development/master/self_homework/%E4%B8%AA%E4%BA%BA%E4%BD%9C%E4%B8%9A1711426%E9%99%88%E9%A2%96/%E4%BD%9C%E4%B8%9A3(1711426_%E9%99%88%E9%A2%96).zip （作业三）
 
-    诸佳昕：https://github.com/Kegem0/Internet-data-development/tree/master/self_homework/%E4%B8%AA%E4%BA%BA%E4%BD%9C%E4%B8%9A1711447%E8%AF%B8%E4%BD%B3%E6%98%95
+    诸佳昕：https://raw.githubusercontent.com/Kegem0/Internet-data-development/master/self_homework/%E4%B8%AA%E4%BA%BA%E4%BD%9C%E4%B8%9A1711447%E8%AF%B8%E4%BD%B3%E6%98%95/%E4%BD%9C%E4%B8%9A1(1711447_%E8%AF%B8%E4%BD%B3%E6%98%95).zip （作业一）
+    
+    https://raw.githubusercontent.com/Kegem0/Internet-data-development/master/self_homework/%E4%B8%AA%E4%BA%BA%E4%BD%9C%E4%B8%9A1711447%E8%AF%B8%E4%BD%B3%E6%98%95/%E4%BD%9C%E4%B8%9A2(1711447_%E8%AF%B8%E4%BD%B3%E6%98%95).zip （作业二）
+    
+    https://raw.githubusercontent.com/Kegem0/Internet-data-development/master/self_homework/%E4%B8%AA%E4%BA%BA%E4%BD%9C%E4%B8%9A1711447%E8%AF%B8%E4%BD%B3%E6%98%95/%E4%BD%9C%E4%B8%9A3(1711447_%E8%AF%B8%E4%BD%B3%E6%98%95).zip （作业三）
 
 - ### 需求文档：
 
