@@ -12,6 +12,7 @@ Nankai university centennial anniversary database and front-end
 
   陈颖，诸佳昕：后端设计<br>
   ![我们的github](https://github.com/Kegem0/Internet-data-development)<br>
+   ​      git提交记录：
   ![git提交记录](https://github.com/Kegem0/Internet-data-development/blob/master/git%E6%8F%90%E4%BA%A4%E8%AE%B0%E5%BD%95.png)
 
   ----------------
