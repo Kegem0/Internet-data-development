@@ -1,0 +1,17 @@
+1、下载xmapp,并且设置好apache和mysql
+2、在localhost::phpmyadmin(mysql)上新建一个数据库，名称任意，最好为nku，导入包中附带的nku.sql，
+将表格引入
+3、将包中的100nankai.zip解压到xmapp的htdocs文件夹下
+将 xampp\htdocs\100nankai\common\config\main-local.php打开，将db的设置进行
+更改
+'db' => [
+            'class' => 'yii\db\Connection',
+            'dsn' => 'mysql:host=localhost;dbname=[这里输入你刚刚取的数据库名称，我这里默认为nku]',
+            'username' => 'root',//这里是你自己phpmyadmin的账户和密码
+            'password' => '',
+            'charset' => 'utf8',
+        ],
+4、打开浏览器输入
+localhost/100nankai/frontend/web进入前端
+localhost/100nankai/backend/web进入后端
+5、本来想部署到服务器上的，但是学校的服务器出了点问题，临时用的这种方法，老师已经身经百战，这样应该也可以看懂的
